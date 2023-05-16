@@ -101,3 +101,116 @@ const headerObserver = new IntersectionObserver(stickyNav, {
 });
 
 headerObserver.observe(header);
+
+// * Reveal sections
+const revealSection = function (entries, observer) {
+  const [entry] = entries;
+  if (!entry.isIntersecting) return;
+
+  entry.target.classList.remove("section--hidden");
+  observer.unobserve(entry.target);
+};
+
+const sectionObserver = new IntersectionObserver(revealSection, {
+  root: null,
+  threshold: 0.15,
+});
+
+allSections.forEach((section) => {
+  sectionObserver.observe(section);
+  section.classList.add("section--hidden");
+});
+
+// * Lazy loading images
+
+const loader = function (entries, obsever) {
+  const [entry] = entries;
+
+  if (!entry.isIntersecting) return;
+
+  entry.target.src = entry.target.dataset.src;
+  entry.target.addEventListener("load", function () {
+    this.classList.remove("lazy-img");
+  });
+
+  obsever.unobserve(entry.target);
+};
+
+const imgObserver = new IntersectionObserver(loader, {
+  root: null,
+  threshold: 0,
+  rootMargin: "200px",
+});
+
+imgTargets.forEach((imgTarget) => imgObserver.observe(imgTarget));
+
+// * slider
+
+const slider = function () {
+  const slides = document.querySelectorAll(".slide");
+  const btnLeft = document.querySelector(".slider__btn--left");
+  const btnRight = document.querySelector(".slider__btn--right");
+  const dotsContainer = document.querySelector(".dots");
+
+  let currentSlide = 0;
+  const maxSlides = slides.length;
+
+  const goToSlide = function (slideNo = 0) {
+    slides.forEach((slide, index) => {
+      slide.style.transform = `translateX(${100 * (index - slideNo)}%)`;
+      [...dotsContainer.childNodes]
+        .at(index)
+        .classList.remove("dots__dot--active");
+      [...dotsContainer.childNodes]
+        .at(slideNo)
+        .classList.add("dots__dot--active");
+
+      // activeDot(slideNo);
+    });
+  };
+
+  const createDots = function () {
+    slides.forEach((_, index) => {
+      dotsContainer.insertAdjacentHTML(
+        "beforeEnd",
+        `<button class="dots__dot" data-slide="${index}"></button>`
+      );
+    });
+  };
+
+  const init = function (...callBacks) {
+    callBacks.forEach((callBack) => callBack());
+  };
+
+  init(createDots, goToSlide);
+
+  const nextSlide = function () {
+    if (currentSlide === maxSlides - 1) currentSlide = 0;
+    else currentSlide++;
+    goToSlide(currentSlide);
+  };
+
+  const prevSlide = function () {
+    if (currentSlide === 0) currentSlide = maxSlides - 1;
+    else currentSlide--;
+    goToSlide(currentSlide);
+  };
+
+  // Event handlers
+  btnRight.addEventListener("click", nextSlide);
+  btnLeft.addEventListener("click", prevSlide);
+
+  document.addEventListener("keydown", function (e) {
+    e.key === "ArrowRight" && nextSlide();
+    e.key === "ArrowLeft" && prevSlide();
+  });
+
+  dotsContainer.addEventListener("click", function (e) {
+    if (!e.target.classList.contains("dots__dot")) return;
+
+    const { slide } = e.target.dataset;
+    goToSlide(slide);
+  });
+};
+
+slider();
