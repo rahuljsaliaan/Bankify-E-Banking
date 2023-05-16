@@ -14,9 +14,12 @@ if (isset($_SESSION['user_id'])) {
     if ($result->num_rows > 0) {
         // User found
         $row = $result->fetch_assoc();
-        $userDetails['first_name'] = $row['first_name'];
-        $userDetails['last_name'] = $row['last_name'];
-        $userDetails['email'] = $row['email'];
+        $owner = $row['first_name'];
+        $owner . ' ' . $row['last_name'];
+        $interestRate = $row['interest_rate'];
+        $currency = $row['currency'];
+        $locale = $row['locale'];
+        $username = $row['email'];
     } else {
         // User not found
         $userDetails = null;
@@ -45,9 +48,12 @@ if (isset($_SESSION['user_id'])) {
 
     // Prepare response data
     $response = array(
-        'userDetails' => $userDetails,
-        'amounts' => $amounts,
-        'dateTimes' => $dateTimes
+        'owner' => $owner,
+        'movements' => $amounts,
+        'interestRate' => $interestRate,
+        'movementsDates' => $dateTimes,
+        'currency' => $currency,
+        'locale' => $locale,
     );
 
     // Send JSON response

@@ -26,18 +26,56 @@ const inputCloseUsername = document.querySelector(".form__input--user");
 const inputClosePin = document.querySelector(".form__input--pin");
 
 // * Get account details
-const account = {};
+let account = {};
 
-$(document).ready(function () {
-  $.ajax({
-    type: "POST",
-    url: "get_info.php",
-    success: function (response) {
-      if (response) {
-        console.log(response);
-      } else {
-      }
-    },
-    error: function () {},
+const fetchDetails = function () {
+  $(document).ready(function () {
+    $.ajax({
+      type: "POST",
+      url: "get_info.php",
+      success: function (response) {
+        if (response) {
+          account = { ...response };
+          console.log(account);
+        } else {
+        }
+      },
+      error: function () {},
+    });
   });
-});
+};
+
+fetchDetails();
+
+// * Display movements
+const displayMovements = function (acc, sort = false) {
+  containerMovements.innerHTML = "";
+
+  const movs = sort
+    ? acc.movements.slice().sort((a, b) => a - b)
+    : acc.movements;
+
+  movs.forEach(function (mov, i) {
+    const type = mov > 0 ? "deposit" : "withdrawal";
+
+    // calculate movements date
+    const date = new Date(acc.movementsDates[i]);
+    const displayDate = formatDate(date, currentAccount.locale);
+
+    const html = `
+      <div class="movements__row">
+        <div class="movements__type movements__type--${type}">${
+      i + 1
+    } ${type}</div>
+        <div class="movements__date">${displayDate}</div>
+        <div class="movements__value">${formatCurrency(
+          mov,
+          acc.locale,
+          acc.currency
+        )}</div>
+      </div>
+    `;
+
+    containerMovements.insertAdjacentHTML("afterbegin", html);
+  });
+};
