@@ -36,3 +36,33 @@ document.addEventListener("keydown", function (e) {
     closeModal();
   }
 });
+
+// * Page navigation
+btnScrollTo.addEventListener("click", function () {
+  section1.scrollIntoView({ behavior: "smooth" });
+});
+
+// * Event delegation
+document.querySelector(".nav__links").addEventListener("click", function (e) {
+  e.preventDefault();
+  const id = e.target.getAttribute("href");
+  console.log(id);
+
+  if (e.target.classList.contains("nav__link"))
+    document.querySelector(id).scrollIntoView({ behavior: "smooth" });
+});
+
+// * Tabs content
+tabContainer.addEventListener("click", function (e) {
+  const clicked = e.target.closest(".operations__tab");
+  if (!clicked) return;
+  tabs.forEach((tab) => tab.classList.remove("operations__tab--active"));
+  operationsContents.forEach((operationsContent) =>
+    operationsContent.classList.remove("operations__content--active")
+  );
+
+  clicked.classList.add("operations__tab--active");
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add("operations__content--active");
+});
