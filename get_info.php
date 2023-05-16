@@ -15,7 +15,7 @@ if (isset($_SESSION['user_id'])) {
         // User found
         $row = $result->fetch_assoc();
         $owner = $row['first_name'];
-        $owner . ' ' . $row['last_name'];
+        $owner = $owner . ' ' . $row['last_name'];
         $interestRate = $row['interest_rate'];
         $currency = $row['currency'];
         $locale = $row['locale'];

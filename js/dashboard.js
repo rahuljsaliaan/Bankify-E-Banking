@@ -25,6 +25,47 @@ const inputClosePin = document.querySelector(".form__input--pin");
 // * Account Global variable
 let account = {};
 
+//---------------------------------------General Functions---------------------------------------
+const formatDate = function (date, locale, time = false) {
+  const day = `${date.getDate()}`.padStart(2, 0);
+  const month = `${date.getMonth() + 1}`.padStart(2, 0);
+  const year = date.getFullYear();
+
+  if (time === false) {
+    const daysPassed = Math.round((new Date() - date) / (1000 * 60 * 60 * 24));
+    switch (daysPassed) {
+      case 0:
+        return "Today";
+      case 1:
+        return "Yesterday";
+      case 2:
+      case 3:
+      case 4:
+      case 5:
+      case 6:
+      case 7:
+        return `${daysPassed} days ago`;
+      default:
+        return Intl.DateTimeFormat(locale).format(date);
+    }
+  } else {
+    return Intl.DateTimeFormat(locale, {
+      day: "numeric",
+      month: "numeric",
+      year: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+    }).format(date);
+  }
+};
+
+const formatCurrency = function (value, locale, currency) {
+  return new Intl.NumberFormat(locale, {
+    style: "currency",
+    currency: currency,
+  }).format(value);
+};
+
 //---------------------------------------Modules---------------------------------------
 // * Display movements
 const displayMovements = function (acc, sort = false) {
@@ -34,18 +75,19 @@ const displayMovements = function (acc, sort = false) {
     ? acc.movements.slice().sort((a, b) => a - b)
     : acc.movements;
 
-  moves.forEach(function (mov, i) {
-    const type = mov > 0 ? "deposit" : "withdrawal";
+  if (moves) {
+    moves.forEach(function (mov, i) {
+      const type = mov > 0 ? "deposit" : "withdrawal";
 
-    // calculate movements date
-    const date = new Date(acc.movementsDates[i]);
-    const displayDate = formatDate(date, currentAccount.locale);
+      // calculate movements date
+      const date = new Date(acc.movementsDates[i]);
+      const displayDate = formatDate(date, account.locale);
 
-    const html = `
+      const html = `
       <div class="movements__row">
         <div class="movements__type movements__type--${type}">${
-      i + 1
-    } ${type}</div>
+        i + 1
+      } ${type}</div>
         <div class="movements__date">${displayDate}</div>
         <div class="movements__value">${formatCurrency(
           mov,
@@ -55,22 +97,27 @@ const displayMovements = function (acc, sort = false) {
       </div>
     `;
 
-    containerMovements.insertAdjacentHTML("afterbegin", html);
-  });
+      containerMovements.insertAdjacentHTML("afterbegin", html);
+    });
+  }
 };
 
 // * Display Balance
 const calcDisplayBalance = function (acc) {
-  acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0).toFixed(2);
-  labelBalance.textContent = `${formatCurrency(
-    acc.balance,
-    acc.locale,
-    acc.currency
-  )}`;
+  if (acc.movements) {
+    acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0).toFixed(2);
+    labelBalance.textContent = `${formatCurrency(
+      acc.balance,
+      acc.locale,
+      acc.currency
+    )}`;
+  }
 };
 
 // * Display Summary
 const calcDisplaySummary = function (acc) {
+  if (!acc.movements) return;
+
   const incomes = acc.movements
     .filter((mov) => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
@@ -145,9 +192,7 @@ const setLogoutTimer = function () {
     // when 0 seconds remaining, stop timer and logout
 
     if (time === 0) {
-      clearInterval(timerInterval);
-      labelWelcome.textContent = "Log in to get started";
-      containerApp.style.opacity = 0;
+      window.location.href = "logout.php";
     }
 
     // Decrement Time
@@ -160,6 +205,9 @@ const setLogoutTimer = function () {
   return timerInterval;
 };
 
+//--------------------------------------- Event handlers---------------------------------------
+let timerInterval;
+
 //---------------------------------------Asynchronous Fetch---------------------------------------
 // * Fetch User Details and Movements
 const fetchDetails = function () {
@@ -170,7 +218,33 @@ const fetchDetails = function () {
       success: function (response) {
         if (response) {
           account = { ...response };
+
+          // current date and time
+          setInterval(function () {
+            labelDate.textContent = formatDate(
+              new Date(),
+              account.locale,
+              true
+            );
+          }, 1000);
+
+          // Set Logout Timer
+          timerInterval && clearInterval(timerInterval);
+          timerInterval = setLogoutTimer();
+
+          // update UI
           updateUI(account);
+
+          // success message
+          Swal.fire({
+            title: "Loged In...!",
+            text: `Successfully loged in as '${account.owner}'`,
+            icon: "success",
+            showConfirmButton: false,
+            allowOutsideClick: false,
+            allowEnterKey: false,
+            timer: "1700",
+          });
         } else {
         }
       },
