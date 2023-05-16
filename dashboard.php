@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="shortcut icon" type="image/png" href="img/icon.png" />
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
     <title>Bankify</title>
 </head>
@@ -15,14 +15,8 @@
 <body>
     <!-- TOP NAVIGATION -->
     <nav>
-        <p class="welcome">Log in to get started</p>
-        <img src="logo.png" alt="Logo" class="logo" />
-        <form class="login">
-            <input type="text" placeholder="user" class="login__input login__input--user" />
-            <!-- In practice, use type="password" -->
-            <input type="text" placeholder="PIN" maxlength="4" class="login__input login__input--pin" />
-            <button class="login__btn">&rarr;</button>
-        </form>
+        <p class="welcome"></p>
+        <img src="img/logo.png" alt="Logo" class="logo" />
     </nav>
 
     <main class="app">
@@ -104,12 +98,7 @@
         </p>
     </main>
 
-    <!-- <footer>
-      &copy; by Jonas Schmedtmann. Don't claim as your own :)
-    </footer> -->
-
-    <script src="script.js"></script>
-    <!-- <script src="practise.js"></script> -->
+    <script src="dashboard.js"></script>
 </body>
 
 </html>
