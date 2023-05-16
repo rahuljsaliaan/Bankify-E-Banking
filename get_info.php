@@ -49,6 +49,7 @@ if (isset($_SESSION['user_id'])) {
     // Prepare response data
     $response = array(
         'owner' => $owner,
+        'username' => $username,
         'movements' => $amounts,
         'interestRate' => $interestRate,
         'movementsDates' => $dateTimes,

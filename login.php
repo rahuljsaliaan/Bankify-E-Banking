@@ -16,9 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $response = 'Please fill in all fields';
         echo json_encode($response);
     } else {
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
 
         // check the username and password against the database
         $sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";

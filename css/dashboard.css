@@ -19,7 +19,7 @@ body {
 
 nav {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     padding: 0 2rem;
 }
@@ -31,6 +31,23 @@ nav {
 
 .logo {
     height: 5.25rem;
+}
+
+.logout-btn {
+    display: inline-block;
+    background-color: var(--color-primary);
+    font-size: 1.6rem;
+    font-family: inherit;
+    font-weight: 500;
+    border: none;
+    padding: 1.25rem 3.5rem;
+    border-radius: 10rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: var(--color-primary-darker);
 }
 
 /* MAIN */

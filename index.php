@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600&display=swap" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="css/utility.css" />
     <link rel="stylesheet" href="css/style.css" />
     <title>Bankify</title>
     <script defer src="js/script.js"></script>

@@ -18,6 +18,7 @@ if (isset($_SESSION['loggedin']) && isset($_SESSION['user_id'])) {
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="shortcut icon" type="image/png" href="img/icon.png" />
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/utility.css" />
     <link rel="stylesheet" href="css/dashboard.css" />
     <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
@@ -30,6 +31,7 @@ if (isset($_SESSION['loggedin']) && isset($_SESSION['user_id'])) {
     <nav>
         <p class="welcome"></p>
         <img src="img/logo.png" alt="Logo" class="logo" />
+        <button class="logout-btn">&larr; Logout</button>
     </nav>
 
     <main class="app">

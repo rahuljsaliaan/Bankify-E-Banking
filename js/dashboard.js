@@ -22,6 +22,8 @@ const inputLoanAmount = document.querySelector(".form__input--loan-amount");
 const inputCloseUsername = document.querySelector(".form__input--user");
 const inputClosePin = document.querySelector(".form__input--pin");
 
+const btnLogout = document.querySelector(".logout-btn");
+
 // * Account Global variable
 let account = {};
 
@@ -229,6 +231,9 @@ const fetchDetails = function () {
         if (response) {
           account = { ...response, balance: 0 };
 
+          // welcome message
+          labelWelcome.textContent = `Welcome back, ${account.owner}`;
+
           // current date and time
           setInterval(function () {
             labelDate.textContent = formatDate(
@@ -255,6 +260,7 @@ const fetchDetails = function () {
 fetchDetails();
 
 //--------------------------------------- Event handlers and ajax---------------------------------------
+// * Transfer Amount
 btnTransfer.addEventListener("click", function (e) {
   e.preventDefault();
   const amount = +inputTransferAmount.value;
@@ -312,6 +318,7 @@ btnTransfer.addEventListener("click", function (e) {
   }, 2500);
 });
 
+// * Loan Request
 btnLoan.addEventListener("click", function (e) {
   e.preventDefault();
 
@@ -373,4 +380,56 @@ btnLoan.addEventListener("click", function (e) {
     });
   }
   inputLoanAmount.value = "";
+});
+
+// * Close Account
+btnClose.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  if (inputCloseUsername.value === account.username) {
+    Swal.fire({
+      title: "Delete Account...?",
+      text: `Are you sure you want to delete account '${currentAccount.owner}'`,
+      icon: "warning",
+      confirmButtonText: "OK",
+      cancelButtonText: "Cancel",
+      showCancelButton: true,
+    }).then(function (button) {
+      if (button.isConfirmed) {
+        // success message
+        Swal.fire({
+          title: "Deleted Account...!",
+          text: `'${currentAccount.owner}' account removed successfully`,
+          icon: "success",
+          confirmButtonText: "OK",
+        });
+      }
+    });
+  } else {
+    Swal.fire({
+      title: "Couldn't Close Account...!",
+      text: "Please Check the user credentials",
+      icon: "error",
+      confirmButtonText: "OK",
+    });
+  }
+
+  inputCloseUsername.value = inputClosePin.value = "";
+});
+
+// * Logout
+// Log out
+btnLogout.addEventListener("click", function () {
+  Swal.fire({
+    title: "Logout...!",
+    text: "Are you sure you want to log out ?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Yes",
+    cancelButtonText: "Cancel",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      window.location.href = "logout.php";
+    }
+  });
 });
