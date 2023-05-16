@@ -29,7 +29,7 @@
                     <a class="nav__link" href="#section--3">Testimonials</a>
                 </li>
                 <li class="nav__item">
-                    <a class="nav__link nav__link--btn btn--show-modal" href="#">Open account</a>
+                    <a class="nav__link nav__link--btn btn--show-modal" href="#">Login</a>
                 </li>
             </ul>
         </nav>
