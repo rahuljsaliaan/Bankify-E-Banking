@@ -636,6 +636,11 @@ h4 {
     border-radius: 0.5rem;
 }
 
+.modal-error-message {
+    grid-column: 1 / span 2;
+    justify-self: center;
+}
+
 .modal__form button {
     grid-column: 1 / span 2;
     justify-self: center;

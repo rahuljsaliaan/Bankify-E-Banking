@@ -1,3 +1,14 @@
+<?php
+session_start();
+$user_id;
+if (isset($_SESSION['loggedin']) && isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+} else {
+    header("Location: index.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -97,6 +108,9 @@
         <p class="logout-timer">
             You will be logged out in <span class="timer">05:00</span>
         </p>
+
+        <?php echo "<input type='hidden' value='$user_id'>" ?>
+
     </main>
 </body>
 

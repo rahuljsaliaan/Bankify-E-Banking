@@ -24,3 +24,37 @@ const inputTransferAmount = document.querySelector(".form__input--amount");
 const inputLoanAmount = document.querySelector(".form__input--loan-amount");
 const inputCloseUsername = document.querySelector(".form__input--user");
 const inputClosePin = document.querySelector(".form__input--pin");
+
+// * Get account details
+// const account = {
+//   owner: ,
+//   movements: ,
+//   interestRate: , // %
+//   pin: ,
+
+//   movementsDates: ,
+//   currency: ,
+//   locale: , // de-DE
+// };
+
+$(document).ready(function () {
+  $.ajax({
+    type: "POST",
+    url: "get_info.php",
+    data: $("#loginForm").serialize(),
+    success: function (response) {
+      if (response === '"success"') {
+        // Redirect to dashboard or homepage
+        window.location.href = "dashboard.php";
+        console.log("redirecting");
+      } else {
+        // Display error message
+        $("#errorMessage").text(response);
+      }
+    },
+    error: function () {
+      // Display error message
+      $("#errorMessage").text("Something went wrong. Please try again later.");
+    },
+  });
+});

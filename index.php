@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="shortcut icon" type="image/png" href="img/icon.png" />
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600&display=swap" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="css/style.css" />
     <title>Bankify</title>
     <script defer src="js/script.js"></script>
@@ -296,11 +298,12 @@
         <h2 class="modal__header">
             Login to your <span class="highlight">Bankify</span> account
         </h2>
-        <form class="modal__form">
+        <form id="loginForm" class="modal__form">
             <label>email</label>
-            <input type="text" />
+            <input type="text" name="email" />
             <label>password</label>
-            <input type="password" />
+            <input type="password" name="password" />
+            <span class="modal-error-message error-message" id="errorMessage"></span>
             <button class="btn">Login &rarr;</button>
         </form>
     </div>

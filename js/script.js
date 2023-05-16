@@ -214,3 +214,31 @@ const slider = function () {
 };
 
 slider();
+
+// *--------Login--------
+$(document).ready(function () {
+  $("#loginForm").submit(function (event) {
+    event.preventDefault();
+    $.ajax({
+      type: "POST",
+      url: "login.php",
+      data: $("#loginForm").serialize(),
+      success: function (response) {
+        if (response === '"success"') {
+          // Redirect to dashboard or homepage
+          window.location.href = "dashboard.php";
+          console.log("redirecting");
+        } else {
+          // Display error message
+          $("#errorMessage").text(response);
+        }
+      },
+      error: function () {
+        // Display error message
+        $("#errorMessage").text(
+          "Something went wrong. Please try again later."
+        );
+      },
+    });
+  });
+});
