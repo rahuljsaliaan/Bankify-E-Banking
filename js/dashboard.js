@@ -11,14 +11,11 @@ const labelTimer = document.querySelector(".timer");
 const containerApp = document.querySelector(".app");
 const containerMovements = document.querySelector(".movements");
 
-const btnLogin = document.querySelector(".login__btn");
 const btnTransfer = document.querySelector(".form__btn--transfer");
 const btnLoan = document.querySelector(".form__btn--loan");
 const btnClose = document.querySelector(".form__btn--close");
 const btnSort = document.querySelector(".btn--sort");
 
-const inputLoginUsername = document.querySelector(".login__input--user");
-const inputLoginPin = document.querySelector(".login__input--pin");
 const inputTransferTo = document.querySelector(".form__input--to");
 const inputTransferAmount = document.querySelector(".form__input--amount");
 const inputLoanAmount = document.querySelector(".form__input--loan-amount");
@@ -51,11 +48,11 @@ fetchDetails();
 const displayMovements = function (acc, sort = false) {
   containerMovements.innerHTML = "";
 
-  const movs = sort
+  const moves = sort
     ? acc.movements.slice().sort((a, b) => a - b)
     : acc.movements;
 
-  movs.forEach(function (mov, i) {
+  moves.forEach(function (mov, i) {
     const type = mov > 0 ? "deposit" : "withdrawal";
 
     // calculate movements date
@@ -78,4 +75,45 @@ const displayMovements = function (acc, sort = false) {
 
     containerMovements.insertAdjacentHTML("afterbegin", html);
   });
+};
+
+// * Display Balance
+const calcDisplayBalance = function (acc) {
+  acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0).toFixed(2);
+  labelBalance.textContent = `${formatCurrency(
+    acc.balance,
+    acc.locale,
+    acc.currency
+  )}`;
+};
+
+// * Display Summary
+const calcDisplaySummary = function (acc) {
+  const incomes = acc.movements
+    .filter((mov) => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${formatCurrency(
+    incomes,
+    acc.locale,
+    acc.currency
+  )}`;
+
+  const out = Math.abs(
+    acc.movements.filter((mov) => mov < 0).reduce((acc, mov) => acc + mov, 0)
+  );
+  labelSumOut.textContent = `${formatCurrency(out, acc.locale, acc.currency)}`;
+
+  const interest = acc.movements
+    .filter((mov) => mov > 0)
+    .map((deposit) => (deposit * acc.interestRate) / 100)
+    .filter((int, i, arr) => {
+      // console.log(arr);
+      return int >= 1;
+    })
+    .reduce((acc, int) => acc + int, 0);
+  labelSumInterest.textContent = `${formatCurrency(
+    interest,
+    acc.locale,
+    acc.currency
+  )}`;
 };
