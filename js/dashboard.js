@@ -26,6 +26,16 @@ const inputClosePin = document.querySelector(".form__input--pin");
 let account = {};
 
 //---------------------------------------General Functions---------------------------------------
+
+// * Sort Movements
+let sorted = false;
+btnSort.addEventListener("click", function (e) {
+  e.preventDefault();
+  displayMovements(account, !sorted);
+  sorted = !sorted;
+});
+
+// * Format Date
 const formatDate = function (date, locale, time = false) {
   const day = `${date.getDate()}`.padStart(2, 0);
   const month = `${date.getMonth() + 1}`.padStart(2, 0);
@@ -105,7 +115,7 @@ const displayMovements = function (acc, sort = false) {
 // * Display Balance
 const calcDisplayBalance = function (acc) {
   if (acc.movements) {
-    acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0).toFixed(2);
+    acc.balance = acc.movements.reduce((acc, mov) => acc + Number(mov), 0);
     labelBalance.textContent = `${formatCurrency(
       acc.balance,
       acc.locale,
@@ -120,7 +130,7 @@ const calcDisplaySummary = function (acc) {
 
   const incomes = acc.movements
     .filter((mov) => mov > 0)
-    .reduce((acc, mov) => acc + mov, 0);
+    .reduce((acc, mov) => acc + Number(mov), 0);
   labelSumIn.textContent = `${formatCurrency(
     incomes,
     acc.locale,
@@ -128,7 +138,9 @@ const calcDisplaySummary = function (acc) {
   )}`;
 
   const out = Math.abs(
-    acc.movements.filter((mov) => mov < 0).reduce((acc, mov) => acc + mov, 0)
+    acc.movements
+      .filter((mov) => mov < 0)
+      .reduce((acc, mov) => acc + Number(mov), 0)
   );
   labelSumOut.textContent = `${formatCurrency(out, acc.locale, acc.currency)}`;
 
@@ -205,11 +217,9 @@ const setLogoutTimer = function () {
   return timerInterval;
 };
 
-//--------------------------------------- Event handlers---------------------------------------
-let timerInterval;
-
 //---------------------------------------Asynchronous Fetch---------------------------------------
 // * Fetch User Details and Movements
+let timerInterval;
 const fetchDetails = function () {
   $(document).ready(function () {
     $.ajax({
@@ -217,7 +227,7 @@ const fetchDetails = function () {
       url: "get_info.php",
       success: function (response) {
         if (response) {
-          account = { ...response };
+          account = { ...response, balance: 0 };
 
           // current date and time
           setInterval(function () {
@@ -234,17 +244,6 @@ const fetchDetails = function () {
 
           // update UI
           updateUI(account);
-
-          // success message
-          Swal.fire({
-            title: "Loged In...!",
-            text: `Successfully loged in as '${account.owner}'`,
-            icon: "success",
-            showConfirmButton: false,
-            allowOutsideClick: false,
-            allowEnterKey: false,
-            timer: "1700",
-          });
         } else {
         }
       },
@@ -254,3 +253,124 @@ const fetchDetails = function () {
 };
 
 fetchDetails();
+
+//--------------------------------------- Event handlers and ajax---------------------------------------
+btnTransfer.addEventListener("click", function (e) {
+  e.preventDefault();
+  const amount = +inputTransferAmount.value;
+  const receiverAcc = inputTransferTo.value;
+  inputTransferAmount.value = inputTransferTo.value = "";
+  setTimeout(function () {
+    if (
+      amount > 0 &&
+      account.balance >= amount &&
+      receiverAcc?.username !== account.username
+    ) {
+      // Doing the transfer
+      $(document).ready(function () {
+        $.ajax({
+          type: "POST",
+          url: "process_transfer.php",
+          data: {
+            receiverAcc: receiverAcc,
+            amount: `-${amount}`,
+          },
+          success: function (response) {
+            if (response === '"success"') {
+              // Set Logout Timer
+              timerInterval && clearInterval(timerInterval);
+              timerInterval = setLogoutTimer();
+
+              // success message
+              Swal.fire({
+                title: "Success...!",
+                text: `Amount of ${formatCurrency(
+                  amount,
+                  account.locale,
+                  account.currency
+                )} Transfered to '${receiverAcc}'s' account Successfully`,
+                icon: "success",
+                confirmButtonText: "OK",
+              });
+
+              // Fetch user Details
+              fetchDetails();
+            } else {
+            }
+          },
+          error: function () {},
+        });
+      });
+    } else {
+      Swal.fire({
+        title: "Couldn't Transfer Amount...!",
+        text: "Please Check the input details",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+    }
+  }, 2500);
+});
+
+btnLoan.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  const amount = Math.floor(inputLoanAmount.value);
+  if (
+    account.movements &&
+    amount > 0 &&
+    account.movements.some((mov) => mov >= amount * 0.1)
+  ) {
+    $(document).ready(function () {
+      $.ajax({
+        type: "POST",
+        url: "process_loan.php",
+        data: {
+          amount: amount,
+        },
+        success: function (response) {
+          if (response.status === "success") {
+            // Set Logout Timer
+            timerInterval && clearInterval(timerInterval);
+            timerInterval = setLogoutTimer();
+
+            // success message
+            Swal.fire({
+              title: "Success...!",
+              text: `Loan Amount of ${formatCurrency(
+                amount,
+                account.locale,
+                account.currency
+              )} Successfully sanctioned`,
+              icon: "success",
+              confirmButtonText: "OK",
+            });
+
+            // Fetch user Details
+            fetchDetails();
+          } else {
+            Swal.fire({
+              title: "Something Went Wrong...!",
+              text: response.message,
+              icon: "error",
+              confirmButtonText: "OK",
+            });
+          }
+        },
+        error: function () {},
+      });
+    });
+  } else {
+    Swal.fire({
+      title: "Loan Not Sanctioned...!",
+      text: `You are not eligible for loan of ${formatCurrency(
+        amount,
+        account.locale,
+        account.currency
+      )}`,
+      icon: "error",
+      confirmButtonText: "OK",
+    });
+  }
+  inputLoanAmount.value = "";
+});
