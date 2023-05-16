@@ -22,28 +22,10 @@ const inputLoanAmount = document.querySelector(".form__input--loan-amount");
 const inputCloseUsername = document.querySelector(".form__input--user");
 const inputClosePin = document.querySelector(".form__input--pin");
 
-// * Get account details
+// * Account Global variable
 let account = {};
 
-const fetchDetails = function () {
-  $(document).ready(function () {
-    $.ajax({
-      type: "POST",
-      url: "get_info.php",
-      success: function (response) {
-        if (response) {
-          account = { ...response };
-          console.log(account);
-        } else {
-        }
-      },
-      error: function () {},
-    });
-  });
-};
-
-fetchDetails();
-
+//---------------------------------------Modules---------------------------------------
 // * Display movements
 const displayMovements = function (acc, sort = false) {
   containerMovements.innerHTML = "";
@@ -117,3 +99,84 @@ const calcDisplaySummary = function (acc) {
     acc.currency
   )}`;
 };
+
+// * Update UI
+const updateUI = function (acc) {
+  // Display movements
+  displayMovements(acc);
+
+  // Display balance
+  calcDisplayBalance(acc);
+
+  // Display summary
+  calcDisplaySummary(acc);
+};
+
+// * Logout Timer
+const setLogoutTimer = function () {
+  // Set time
+  let time = 10 * 60;
+
+  // Timer Function
+  const timer = function () {
+    const min = String(Math.trunc(time / 60)).padStart(2, 0);
+    const sec = String(time % 60).padStart(2, 0);
+
+    // Logout Message Toast
+    if (time <= 5) {
+      if (time === 5) {
+        Swal.fire({
+          title: "Logging Out...!",
+          text: `You will Be logged out in ${time}`,
+          icon: "info",
+          showConfirmButton: false,
+          allowOutsideClick: false,
+          allowEnterKey: false,
+          allowEscapeKey: false,
+          timer: "5000",
+        });
+      }
+      document.querySelector(
+        ".swal2-html-container"
+      ).textContent = `You will Be logged out in ${time}`;
+    }
+
+    labelTimer.textContent = `${min}: ${sec}`;
+    // when 0 seconds remaining, stop timer and logout
+
+    if (time === 0) {
+      clearInterval(timerInterval);
+      labelWelcome.textContent = "Log in to get started";
+      containerApp.style.opacity = 0;
+    }
+
+    // Decrement Time
+    time--;
+  };
+
+  timer();
+  // Set time Interval
+  const timerInterval = setInterval(timer, 1000);
+  return timerInterval;
+};
+
+//---------------------------------------Asynchronous Fetch---------------------------------------
+// * Fetch User Details and Movements
+const fetchDetails = function () {
+  $(document).ready(function () {
+    $.ajax({
+      type: "POST",
+      url: "get_info.php",
+      success: function (response) {
+        if (response) {
+          account = { ...response };
+          updateUI(account);
+        } else {
+        }
+      },
+      error: function () {},
+    });
+  });
+};
+
+fetchDetails();
