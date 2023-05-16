@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css" />
     <title>Bankify</title>
-    <script defer src="script.js"></script>
+    <script defer src="js/script.js"></script>
 </head>
 
 <body>
