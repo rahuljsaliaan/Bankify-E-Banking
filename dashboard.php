@@ -19,6 +19,7 @@ if (isset($_SESSION['loggedin']) && isset($_SESSION['user_id'])) {
     <link rel="shortcut icon" type="image/png" href="img/icon.png" />
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/dashboard.css" />
+    <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
     <script defer src="js/dashboard.js"></script>
     <title>Bankify</title>
@@ -108,8 +109,6 @@ if (isset($_SESSION['loggedin']) && isset($_SESSION['user_id'])) {
         <p class="logout-timer">
             You will be logged out in <span class="timer">05:00</span>
         </p>
-
-        <?php echo "<input type='hidden' value='$user_id'>" ?>
 
     </main>
 </body>

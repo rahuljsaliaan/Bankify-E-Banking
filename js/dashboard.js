@@ -26,35 +26,18 @@ const inputCloseUsername = document.querySelector(".form__input--user");
 const inputClosePin = document.querySelector(".form__input--pin");
 
 // * Get account details
-// const account = {
-//   owner: ,
-//   movements: ,
-//   interestRate: , // %
-//   pin: ,
-
-//   movementsDates: ,
-//   currency: ,
-//   locale: , // de-DE
-// };
+const account = {};
 
 $(document).ready(function () {
   $.ajax({
     type: "POST",
     url: "get_info.php",
-    data: $("#loginForm").serialize(),
     success: function (response) {
-      if (response === '"success"') {
-        // Redirect to dashboard or homepage
-        window.location.href = "dashboard.php";
-        console.log("redirecting");
+      if (response) {
+        console.log(response);
       } else {
-        // Display error message
-        $("#errorMessage").text(response);
       }
     },
-    error: function () {
-      // Display error message
-      $("#errorMessage").text("Something went wrong. Please try again later.");
-    },
+    error: function () {},
   });
 });
