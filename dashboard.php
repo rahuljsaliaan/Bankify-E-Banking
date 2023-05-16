@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/dashboard.css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
+    <script defer src="js/dashboard.js"></script>
     <title>Bankify</title>
 </head>
 
@@ -97,8 +98,6 @@
             You will be logged out in <span class="timer">05:00</span>
         </p>
     </main>
-
-    <script src="dashboard.js"></script>
 </body>
 
 </html>
