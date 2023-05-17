@@ -68,9 +68,9 @@
                 </div>
                 <h5 class="features__header">100% digital bank</h5>
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde alias
-                    sint quos? Accusantium a fugiat porro reiciendis saepe quibusdam
-                    debitis ducimus.
+                    Experience the convenience and flexibility of a 100% digital bank. Join the growing number of
+                    individuals who are embracing the future of banking. Seamlessly manage your finances, access
+                    innovative features, and enjoy a hassle-free banking experience like never before.
                 </p>
             </div>
 
@@ -82,9 +82,9 @@
                 </div>
                 <h5 class="features__header">Watch your money grow</h5>
                 <p>
-                    Nesciunt quos autem dolorum voluptates cum dolores dicta fuga
-                    inventore ab? Nulla incidunt eius numquam sequi iste pariatur
-                    quibusdam!
+                    Watch your money grow with our investment platform. Join the thousands of individuals who have
+                    entrusted us with their financial future. Start your journey towards financial growth and success
+                    today.
                 </p>
             </div>
             <img src="img/grow-lazy.jpg" data-src="img/grow.jpg" alt="Plant" class="features__img lazy-img" />
@@ -96,11 +96,11 @@
                         <use xlink:href="img/icons.svg#icon-credit-card"></use>
                     </svg>
                 </div>
-                <h5 class="features__header">Free debit card included</h5>
+                <h5 class="features__header">Customized user Interface for different users</h5>
                 <p>
-                    Quasi, fugit in cumque cupiditate reprehenderit debitis animi enim
-                    eveniet consequatur odit quam quos possimus assumenda dicta fuga
-                    inventore ab.
+                    At our platform, we believe in providing a personalized experience for every user. With our
+                    customized user interface, we cater to the unique preferences and needs of individual users,
+                    ensuring a seamless and tailored interaction.
                 </p>
             </div>
         </div>
@@ -133,13 +133,12 @@
                     </svg>
                 </div>
                 <h5 class="operations__header">
-                    Tranfser money to anyone, instantly! No fees, no BS.
+                    Transfer money to anyone, instantly! No fees, no BS.
                 </h5>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat.
+                    With our revolutionary money transfer service, sending money to anyone has never been easier or
+                    faster. Say goodbye to excessive fees and unnecessary complications. Our streamlined process ensures
+                    that you can transfer funds instantly, hassle-free, and without any hidden charges.
                 </p>
             </div>
 
@@ -153,10 +152,10 @@
                     Buy a home or make your dreams come true, with instant loans.
                 </h5>
                 <p>
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                    cupidatat non proident, sunt in culpa qui officia deserunt mollit
-                    anim id est laborum.
+                    Imagine owning your dream home or bringing your long-awaited aspirations to life. With our instant
+                    loan services, you can turn those dreams into reality without delay. Whether you're planning to
+                    purchase a new home, renovate your existing property, or fulfill any other personal goal, our
+                    hassle-free loan process is here to make it happen.
                 </p>
             </div>
             <div class="operations__content operations__content--3">
@@ -169,10 +168,9 @@
                     No longer need your account? No problem! Close it instantly.
                 </h5>
                 <p>
-                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-                    officia deserunt mollit anim id est laborum. Ut enim ad minim
-                    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-                    ea commodo consequat.
+                    Experience the peace of mind that comes with knowing you have the ability to close your account
+                    instantly, hassle-free. We appreciate the opportunity to serve you and understand that circumstances
+                    may change. When it's time to move on, we're here to make it a seamless and efficient process.
                 </p>
             </div>
         </div>
@@ -182,7 +180,7 @@
         <div class="section__title section__title--testimonials">
             <h2 class="section__description">Not sure yet?</h2>
             <h3 class="section__header">
-                Millions of Bankifys are already making their lifes simpler.
+                Millions of Bankify's are already making their life simpler.
             </h3>
         </div>
 
@@ -191,17 +189,15 @@
                 <div class="testimonial">
                     <h5 class="testimonial__header">Best financial decision ever!</h5>
                     <blockquote class="testimonial__text">
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                        Accusantium quas quisquam non? Quas voluptate nulla minima
-                        deleniti optio ullam nesciunt, numquam corporis et asperiores
-                        laboriosam sunt, praesentium suscipit blanditiis. Necessitatibus
-                        id alias reiciendis, perferendis facere pariatur dolore veniam
-                        autem esse non voluptatem saepe provident nihil molestiae.
+                        From the moment I joined, I was impressed by the range of financial solutions they offer.
+                        Whether it's banking, investments, loans, or any other financial need, they have it covered. The
+                        convenience of having everything in one place has simplified my financial life and saved me
+                        valuable time.
                     </blockquote>
                     <address class="testimonial__author">
                         <img src="img/user-1.jpg" alt="" class="testimonial__photo" />
-                        <h6 class="testimonial__name">Aarav Lynn</h6>
-                        <p class="testimonial__location">San Francisco, USA</p>
+                        <h6 class="testimonial__name">Seenu Vasan</h6>
+                        <p class="testimonial__location">Karnataka, India</p>
                     </address>
                 </div>
             </div>
@@ -212,15 +208,14 @@
                         The last step to becoming a complete minimalist
                     </h5>
                     <blockquote class="testimonial__text">
-                        Quisquam itaque deserunt ullam, quia ea repellendus provident,
-                        ducimus neque ipsam modi voluptatibus doloremque, corrupti
-                        laborum. Incidunt numquam perferendis veritatis neque repellendus.
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo
-                        deserunt exercitationem deleniti.
+                        With their seamless digital platform, I can effortlessly handle all my financial needs in one
+                        place. From banking and budgeting to investments and loans, everything is streamlined and easily
+                        accessible. The clutter and complexity of traditional banking are replaced with simplicity and
+                        efficiency.
                     </blockquote>
                     <address class="testimonial__author">
                         <img src="img/user-2.jpg" alt="" class="testimonial__photo" />
-                        <h6 class="testimonial__name">Miyah Miles</h6>
+                        <h6 class="testimonial__name">Rishi Sunaik</h6>
                         <p class="testimonial__location">London, UK</p>
                     </address>
                 </div>
@@ -232,16 +227,13 @@
                         Finally free from old-school banks
                     </h5>
                     <blockquote class="testimonial__text">
-                        Debitis, nihil sit minus suscipit magni aperiam vel tenetur
-                        incidunt commodi architecto numquam omnis nulla autem,
-                        necessitatibus blanditiis modi similique quidem. Odio aliquam
-                        culpa dicta beatae quod maiores ipsa minus consequatur error sunt,
-                        deleniti saepe aliquid quos inventore sequi. Necessitatibus id
-                        alias reiciendis, perferendis facere.
+                        One of the things I appreciate most about Bankify is their commitment to transparency. They have
+                        eradicated hidden fees and complicated jargon, allowing me to understand my finances with
+                        clarity. I can trust that what I see is what I get, no surprises or hidden costs.
                     </blockquote>
                     <address class="testimonial__author">
                         <img src="img/user-3.jpg" alt="" class="testimonial__photo" />
-                        <h6 class="testimonial__name">Francisco Gomes</h6>
+                        <h6 class="testimonial__name">Christiano Ronaldo</h6>
                         <p class="testimonial__location">Lisbon, Portugal</p>
                     </address>
                 </div>
