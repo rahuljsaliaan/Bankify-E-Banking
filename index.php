@@ -256,7 +256,7 @@
                 today!
             </h3>
         </div>
-        <button class="btn btn--show-modal">Open your free account today!</button>
+        <button class="btn"><a class="" href="signup.php">Open your free account today!</a></button>
     </section>
 
     <footer class="footer">

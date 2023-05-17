@@ -1,0 +1,120 @@
+body {
+    background-image: url(../img/bankify-background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Poppins', sans-serif;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: inherit;
+    background-size: cover;
+    filter: blur(10px);
+    z-index: -1;
+}
+
+.signup-modal {
+    width: 60vw;
+    height: 85vh;
+    background-color: #f3f3f3;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-radius: 10px;
+}
+
+.signup-modal .signup-modal-left {
+    background: var(--gradient-primary);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup-modal .signup-modal-left a {
+    display: block;
+    max-width: 18rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+}
+
+.signup-modal .signup-modal-left img {
+    height: 100%;
+    aspect-ratio: 1;
+    box-shadow: 0 0 50px 20px var(--color-primary-opacity);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all ease .3s;
+}
+
+.signup-modal .signup-modal-left img:hover {
+    transform: scale(1.05);
+}
+
+.signup-modal .signup-modal-right {
+    padding: 1.5rem 1.5rem;
+}
+
+.signup-modal .signup-modal-right .signup-modal-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+    padding: 1rem 1.5rem;
+}
+
+.signup-modal .signup-modal-right .signup-modal-form .signup-modal-title {
+    color: #666;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.signup-modal .signup-modal-right .signup-modal-form .signup-modal-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.signup-modal .signup-modal-right .signup-modal-form .signup-modal-input input,
+.signup-modal .signup-modal-right .signup-modal-form .signup-modal-input label {
+    outline: none;
+    border-radius: 5px;
+    font-size: 15px;
+    transition: all ease .3s;
+    color: #666;
+}
+
+.signup-modal .signup-modal-right .signup-modal-form .signup-modal-input input {
+    border: 2px solid var(--color-primary);
+    padding: .5rem 1rem;
+}
+
+.signup-modal .signup-modal-right .signup-modal-form .signup-modal-input input:focus {
+    border: 2px solid var(--color-primary);
+    box-shadow: 0 0 10px 2px var(--color-primary-opacity);
+}
+
+.signup-modal .signup-modal-right .signup-modal-form .signup-modal-input .btn-register {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: var(--color-primary);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 5rem;
+    padding: 1rem 3rem;
+    border-radius: 10px;
+}
+
+.signup-modal .signup-modal-right .signup-modal-form .signup-modal-input .btn-register:hover {
+    background: var(--color-primary-darker);
+}
