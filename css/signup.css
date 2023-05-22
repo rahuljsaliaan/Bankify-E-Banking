@@ -42,7 +42,7 @@ body::before {
 
 .signup-modal .signup-modal-left a {
     display: block;
-    max-width: 18rem;
+    max-width: 12rem;
     aspect-ratio: 1;
     border-radius: 50%;
 }
@@ -76,6 +76,16 @@ body::before {
     color: #666;
     font-size: 20px;
     font-weight: 600;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.signup-modal .signup-modal-right .signup-modal-form .signup-modal-input-container {
+    display: flex;
+    gap: 1rem;
 }
 
 .signup-modal .signup-modal-right .signup-modal-form .signup-modal-input {
@@ -109,12 +119,17 @@ body::before {
     cursor: pointer;
     background-color: var(--color-primary);
     color: #fff;
-    font-size: 10px;
-    font-weight: 5rem;
+    font-size: 15px;
+    font-weight: 600;
     padding: 1rem 3rem;
     border-radius: 10px;
 }
 
 .signup-modal .signup-modal-right .signup-modal-form .signup-modal-input .btn-register:hover {
     background: var(--color-primary-darker);
+}
+
+/* Utility */
+.logo-text {
+    height: 100%;
 }

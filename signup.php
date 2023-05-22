@@ -30,23 +30,55 @@ header("Cache-Control: no-cache, must-revalidate");
         </div>
         <div class="signup-modal-right">
             <form class="signup-modal-form" id="registerForm">
-                <h3 class="signup-modal-title">Register for <img class="logo-text" src="" alt=""></h3>
-                <div class="signup-modal-input signup-modal-username">
-                    <label for="username">User Name</label>
-                    <input type="text" name="username" id="username">
+                <h3 class="signup-modal-title">Register for <img class="logo-text" src="img/logo.png" alt=""></h3>
+                <div class="signup-modal-input-container">
+                    <div class="signup-modal-input signup-modal-firstName">
+                        <label for="firstName">First Name</label>
+                        <input type="text" name="firstName" id="firstName">
+                    </div>
+                    <div class="signup-modal-input signup-modal-lastName">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" name="lastName" id="lastName">
+                    </div>
                 </div>
                 <div class="signup-modal-input signup-modal-email">
                     <label for="email">Email</label>
                     <input type="text" name="email" id="email">
                 </div>
-                <div class="signup-modal-input signup-modal-password">
-                    <label for="password">Password</label>
-                    <input type="password" name="password" id="password">
+
+                <div class="signup-modal-input-container">
+                    <div class="signup-modal-input signup-modal-currency">
+                        <label for="currency">Currency</label>
+                        <input type="text" readonly name="currency" id="currency">
+                    </div>
+                    <div class="signup-modal-input signup-modal-locale">
+                        <label for="locale">Locale</label>
+                        <input type="text" readonly name="locale" id="locale">
+                    </div>
                 </div>
-                <div class="signup-modal-input signup-modal-confirm-password">
-                    <label for="confirmPassword">Confirm Password</label>
-                    <input type="password" name="confirmPassword" id="confirmPassword">
+
+                <div class="signup-modal-input-container">
+                    <div class="signup-modal-input signup-modal-currency">
+                        <label for="initialBalance">Initial Balance</label>
+                        <input type="text" name="initialBalance" id="initialBalance">
+                    </div>
+                    <div class="signup-modal-input signup-modal-locale">
+                        <label for="rot">Interest Rate</label>
+                        <input type="text" readonly name="rot" id="rot">
+                    </div>
                 </div>
+
+                <div class="signup-modal-input-container">
+                    <div class="signup-modal-input signup-modal-password">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password">
+                    </div>
+                    <div class="signup-modal-input signup-modal-confirm-password">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" name="confirmPassword" id="confirmPassword">
+                    </div>
+                </div>
+
                 <div class="signup-modal-input signup-modal-register">
                     <span id="errorMessage" class="error-message"></span>
                     <button class="btn-register" type="submit">Register</button>

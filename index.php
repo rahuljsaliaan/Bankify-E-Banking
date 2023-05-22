@@ -292,9 +292,9 @@
             Login to your <span class="highlight">Bankify</span> account
         </h2>
         <form id="loginForm" class="modal__form">
-            <label>email</label>
+            <label>Email</label>
             <input type="text" name="email" />
-            <label>password</label>
+            <label>Password</label>
             <input type="password" name="password" />
             <span class="modal-error-message error-message" id="errorMessage"></span>
             <button class="btn">Login &rarr;</button>
