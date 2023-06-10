@@ -64,7 +64,7 @@ header("Cache-Control: no-cache, must-revalidate");
                     </div>
                     <div class="signup-modal-input signup-modal-locale">
                         <label for="rot">Interest Rate</label>
-                        <input type="text" readonly name="rot" id="rot">
+                        <input type="text" readonly name="roi" id="roi">
                     </div>
                 </div>
 

@@ -9,7 +9,7 @@ const password = document.querySelector('#password');
 const confirmPassword = document.querySelector('#confirmPassword');
 const currencyInput = document.querySelector('#currency');
 const localeInput = document.querySelector('#locale');
-const rotInput = document.querySelector('#rot');
+const roiInput = document.querySelector('#roi');
 const initBalanceInput = document.querySelector('#initialBalance');
 
 // Calculate ROI
@@ -62,7 +62,7 @@ const inputData = function (data) {
   localeInput.value = data.locale;
 
   initBalanceInput.addEventListener('change', function () {
-    rotInput.value = calcInterestRate(this.value);
+    roiInput.value = calcInterestRate(this.value);
   });
 };
 
@@ -105,12 +105,30 @@ const testInput = function (inputTestCase) {
     return false;
   }
 
+  if (
+    inputTestCase.inputType === 'Password' &&
+    inputTestCase.inputField.value.length < 8
+  ) {
+    Swal.fire({
+      title: `Invalid "${inputTestCase.inputType}"`,
+      text: `Password should contain minimum 10 characters`,
+      icon: 'error',
+      confirmButtonText: 'OK',
+    });
+
+    return false;
+  }
+
   const isValid = inputTestCase.regex.test(inputTestCase.inputField.value);
 
   if (!isValid) {
     Swal.fire({
       title: `Invalid "${inputTestCase.inputType}"`,
-      text: `Please enter a valid "${inputTestCase.inputType}"`,
+      text: `Please enter a valid "${inputTestCase.inputType} ${
+        inputTestCase.inputType === 'Password'
+          ? '(Password should contain alphabets, special characters and digits)'
+          : ''
+      }"`,
       icon: 'error',
       confirmButtonText: 'OK',
     });
@@ -134,9 +152,8 @@ const testPasswordMatch = function (password, confirmPassword) {
       confirmButtonText: 'OK',
     });
 
-    password.value = confirmPassword.value = '';
-    password.blur();
-    confirmPassword.blur();
+    confirmPassword.value = '';
+    confirmPassword.focus();
 
     return false;
   }
@@ -163,11 +180,6 @@ const validateForm = function (formData) {
       inputType: 'Initial Balance',
     },
     { regex: passwordRegex, inputField: password, inputType: 'Password' },
-    {
-      regex: passwordRegex,
-      inputField: confirmPassword,
-      inputType: 'Confirm Password',
-    },
   ];
 
   for (const inputTestCase of inputTestCases) {
@@ -189,32 +201,39 @@ $(document).ready(function () {
     event.preventDefault();
 
     // Get the form data
-    var formData = $(this).serialize();
 
     const isValid = validateForm();
 
     if (!isValid) return;
-    return;
 
+    var formData = $(this).serialize();
     // Send the AJAX request to the PHP script
     $.ajax({
       url: 'process_signup.php',
       type: 'POST',
       data: formData,
       success: function (response) {
-        if (response !== '"success"') {
-          $('#errorMessage').text(response);
+        console.log(response);
+        if (response.status === 'success') {
+          Swal.fire({
+            title: 'Success...!',
+            text: `Successfully registered with Bankify`,
+            icon: 'success',
+            confirmButtonText: 'ok',
+          }).then(result => {
+            if (result.isConfirmed) {
+              window.location.href = 'index.php';
+            }
+          });
+
           return;
         }
+
         Swal.fire({
-          title: 'Success...!',
-          text: `Successfully registered with CookBook`,
-          icon: 'success',
+          title: 'Error...!',
+          text: response.message,
+          icon: 'error',
           confirmButtonText: 'ok',
-        }).then(result => {
-          if (result.isConfirmed) {
-            window.location.href = 'index.php';
-          }
         });
       },
       error: function (xhr, status, error) {
