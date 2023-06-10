@@ -88,11 +88,11 @@ if (isset($_SESSION['loggedin']) && isset($_SESSION['user_id'])) {
         <div class="operation operation--close">
             <h2>Close account</h2>
             <form class="form form--close">
-                <input type="text" class="form__input form__input--user" />
-                <input type="password" maxlength="6" class="form__input form__input--pin" />
+                <input autocomplete="off" type="text" class="form__input form__input--user" />
+                <input autocomplete="off" type="password" class="form__input form__input--pin" />
                 <button class="form__btn form__btn--close">&rarr;</button>
-                <label class="form__label">Confirm user</label>
-                <label class="form__label">Confirm PIN</label>
+                <label class="form__label">Confirm Email</label>
+                <label class="form__label">Confirm Password</label>
             </form>
         </div>
 

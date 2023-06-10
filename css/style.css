@@ -643,6 +643,7 @@ h4 {
 
 .modal-error-message {
     grid-column: 1 / span 2;
+    font-size: 1.5rem;
     justify-self: center;
 }
 
