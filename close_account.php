@@ -1,6 +1,15 @@
 <?php
+require 'db_connect.php';
 
-include 'db_connect.php';
+session_start();
+$user_id;
+if (isset($_SESSION['loggedin']) && isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+} else {
+    header("Location: index.php");
+    exit();
+}
+
 
 try {
     if (!isset($_POST['email']) && isset($_POST['password'])) {

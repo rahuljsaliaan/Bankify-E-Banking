@@ -425,7 +425,7 @@ btnClose.addEventListener('click', function (e) {
                 });
               } else {
                 Swal.fire({
-                  title: "Couldn't Close Account...",
+                  title: 'Something Went Wrong...!',
                   text: response.message,
                   icon: 'error',
                   confirmButtonText: 'OK',
