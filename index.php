@@ -22,16 +22,19 @@
                 data-version-number="1.0" />
             <ul class="nav__links">
                 <li class="nav__item">
-                    <a class="nav__link" href="#section--1">Features</a>
+                    <a class="nav__link nav__link-static" href="#section--1">Features</a>
                 </li>
                 <li class="nav__item">
-                    <a class="nav__link" href="#section--2">Operations</a>
+                    <a class="nav__link nav__link-static" href="#section--2">Operations</a>
                 </li>
                 <li class="nav__item">
-                    <a class="nav__link" href="#section--3">Testimonials</a>
+                    <a class="nav__link nav__link-static" href="#section--3">Testimonials</a>
                 </li>
                 <li class="nav__item">
                     <a class="nav__link nav__link--btn btn--show-modal" href="#">Login</a>
+                </li>
+                <li class="nav__item">
+                    <a class="nav__link nav__link--btn2" href="signup.php">Signup</a>
                 </li>
             </ul>
         </nav>
@@ -232,7 +235,7 @@
                         clarity. I can trust that what I see is what I get, no surprises or hidden costs.
                     </blockquote>
                     <address class="testimonial__author">
-                        <img src="img/user-3.jpg" alt="" class="testimonial__photo" />
+                        <img src="img/user-3.jpeg" alt="" class="testimonial__photo" />
                         <h6 class="testimonial__name">Christiano Ronaldo</h6>
                         <p class="testimonial__location">Lisbon, Portugal</p>
                     </address>

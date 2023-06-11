@@ -161,6 +161,21 @@ img {
     color: #333;
 }
 
+.nav__link--btn2:link,
+.nav__link--btn2:visited {
+    padding: 0.8rem 2.5rem;
+    border-radius: 3rem;
+    background-color: var(--color-secondary);
+    color: #222;
+}
+
+.nav__link--btn2:hover,
+.nav__link--btn2:active {
+    color: inherit;
+    background-color: var(--color-secondary-darker);
+    color: #333;
+}
+
 /* HEADER */
 .header {
     padding: 0 3rem;
@@ -501,7 +516,9 @@ h4 {
 .testimonial__photo {
     grid-row: 1 / span 2;
     width: 6.5rem;
+    aspect-ratio: 1;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 .testimonial__name {

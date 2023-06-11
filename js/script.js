@@ -46,9 +46,11 @@ btnScrollTo.addEventListener('click', function () {
 document.querySelector('.nav__links').addEventListener('click', function (e) {
   e.preventDefault();
   const id = e.target.getAttribute('href');
-  console.log(id);
 
-  if (e.target.classList.contains('nav__link'))
+  if (e.target.classList.contains('nav__link--btn2'))
+    window.location.href = 'signup.php';
+
+  if (e.target.classList.contains('nav__link-static'))
     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
 });
 
