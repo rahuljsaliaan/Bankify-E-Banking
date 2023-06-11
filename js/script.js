@@ -224,7 +224,7 @@ $(document).ready(function () {
       url: 'login.php',
       data: $('#loginForm').serialize(),
       success: function (response) {
-        if (response === '"success"') {
+        if (response === 'success') {
           // Redirect to dashboard or homepage
           window.location.href = 'dashboard.php';
           console.log('redirecting');

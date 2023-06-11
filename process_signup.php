@@ -11,9 +11,13 @@ try {
     $ROI = $_POST['roi'];
     $password = $_POST['password'];
 
+
     if (empty($firstName) || empty($lastName) || empty($email) || empty($currency) || empty($locale) || empty($initialBalance) || empty($ROI) || empty($password)) {
         throw new Exception('Please fill in all the fields');
     }
+
+    // Begin transaction
+    $conn->begin_transaction();
 
     $sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
     $result = $conn->query($sql);
@@ -44,17 +48,32 @@ try {
         throw new Exception("There was some problem creating your account");
     }
 
+    // Commit transaction
+    $conn->commit();
+
+    // Close the connection
+    $conn->close();
+
     $response = array(
         'status' => 'success',
     );
 
 } catch (Exception $e) {
+    // Rollback transaction
+    $conn->rollback();
+
+    // Close the connection
+    $conn->close();
+
     $response = array(
         'status' => 'error',
         'message' => $e->getMessage()
     );
+} finally {
+    // Send JSON response
+    header('Content-Type: application/json');
+    echo json_encode($response);
 }
 
-header('Content-Type: application/json');
-echo json_encode($response);
+
 ?>

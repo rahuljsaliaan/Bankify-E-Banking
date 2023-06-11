@@ -282,48 +282,55 @@ btnTransfer.addEventListener('click', function (e) {
   const amount = +inputTransferAmount.value;
   const receiverAcc = inputTransferTo.value;
   inputTransferAmount.value = inputTransferTo.value = '';
-  setTimeout(function () {
-    if (
-      amount > 0 &&
-      account.balance >= amount &&
-      receiverAcc?.username !== account.username
-    ) {
-      // Doing the transfer
-      $(document).ready(function () {
-        $.ajax({
-          type: 'POST',
-          url: 'process_transfer.php',
-          data: {
-            receiverAcc: receiverAcc,
-            amount: `-${amount}`,
-          },
-          success: function (response) {
-            if (response === '"success"') {
-              processSuccess(timerInterval, {
-                title: 'Success...!',
-                text: `Amount of ${formatCurrency(
-                  amount,
-                  account.locale,
-                  account.currency
-                )} Transfered to '${receiverAcc}'s' account Successfully`,
-                icon: 'success',
-                confirmButtonText: 'OK',
-              });
-            } else {
-            }
-          },
-          error: function () {},
-        });
+  if (
+    amount > 0 &&
+    account.balance >= amount &&
+    receiverAcc?.username !== account.username
+  ) {
+    // Doing the transfer
+    $(document).ready(function () {
+      $.ajax({
+        type: 'POST',
+        url: 'process_transfer.php',
+        data: {
+          receiverAcc,
+          amount,
+        },
+        success: function (response) {
+          console.log(response);
+          if (response.status === 'success') {
+            processSuccess(timerInterval, {
+              title: 'Success...!',
+              text: `Amount of ${formatCurrency(
+                amount,
+                account.locale,
+                account.currency
+              )} Transferred to '${receiverAcc}'s' account Successfully`,
+              icon: 'success',
+              confirmButtonText: 'OK',
+            });
+          } else {
+            Swal.fire({
+              title: 'Something Went Wrong...!',
+              text: response.message,
+              icon: 'error',
+              confirmButtonText: 'OK',
+            });
+          }
+        },
+        error: function () {
+          console.log('Error');
+        },
       });
-    } else {
-      Swal.fire({
-        title: "Couldn't Transfer Amount...!",
-        text: 'Please Check the input details',
-        icon: 'error',
-        confirmButtonText: 'OK',
-      });
-    }
-  }, 2500);
+    });
+  } else {
+    Swal.fire({
+      title: "Couldn't Transfer Amount...!",
+      text: 'Please Check the input details',
+      icon: 'error',
+      confirmButtonText: 'OK',
+    });
+  }
 });
 
 // * Loan Request

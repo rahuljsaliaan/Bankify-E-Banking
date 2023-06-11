@@ -14,7 +14,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (empty($email) || empty($password)) {
         // return an error message if any field is empty
         $response = 'Please fill in all fields';
-        echo json_encode($response);
     } else {
 
         // check the username and password against the database
@@ -28,11 +27,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['loggedin'] = true;
             $_SESSION['user_id'] = $row['user_id'];
             $response = "success";
-            echo json_encode($response);
         } else {
             // the login failed, return error message
             $response = "invalid user name or password...!";
-            echo json_encode($response);
         }
     }
+
+    // Send JSON response
+    header('Content-Type: application/json');
+    echo json_encode($response);
 }
