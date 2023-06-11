@@ -3,6 +3,13 @@ session_start();
 if (isset($_SESSION['loggedin'])) {
     header('location: dashboard.php');
 }
+
+if (isset($_SESSION['verified_email'])) {
+    $email = $_SESSION['verified_email'];
+} else {
+    header('location: verifyEmail.php');
+}
+
 header("Cache-Control: no-cache, must-revalidate");
 ?>
 
@@ -44,7 +51,7 @@ header("Cache-Control: no-cache, must-revalidate");
                 </div>
                 <div class="signup-modal-input signup-modal-email">
                     <label for="email">Email</label>
-                    <input type="text" name="email" id="email">
+                    <input type="text" readonly name="email" id="email" value="<?php echo $email ?>">
                 </div>
 
                 <div class="signup-modal-input-container">

@@ -1,5 +1,10 @@
 <?php
+session_start();
+if (!isset($_SESSION['otp_number']) || !isset($_SESSION['otp_number_expiry']) || !isset($_SESSION['email'])) {
+  header('location: verifyEmail.php');
+}
 
+header("Cache-Control: no-cache, must-revalidate");
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +35,7 @@
       <i class="bx bxs-check-shield shield-icon"></i>
     </div>
     <h4 class="otp-title">Enter OTP</h4>
-    <form action="#">
+    <form id="validateOTPForm" action="">
       <div class="input-field">
         <input class="input-otp" maxlength="1" data-input="1" type="number" />
         <input class="input-otp" maxlength="1" data-input="2" type="number" disabled />
@@ -38,6 +43,7 @@
         <input class="input-otp" maxlength="1" data-input="4" type="number" disabled />
         <input class="input-otp" maxlength="1" data-input="5" type="number" disabled />
         <input class="input-otp" maxlength="1" data-input="6" type="number" disabled />
+        <input type="hidden" id="otpInput" disabled name="otp_input" value="">
       </div>
       <button type="submit" class="verify-btn" disabled>Verify</button>
     </form>

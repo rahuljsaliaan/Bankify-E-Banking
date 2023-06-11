@@ -2,6 +2,8 @@
 
 const inputs = document.querySelectorAll('.input-otp');
 const verifyBtn = document.querySelector('.verify-btn');
+const validateOTPForm = document.querySelector('#validateOTPForm');
+const otpInput = document.querySelector('#otpInput');
 
 inputs[0].focus();
 
@@ -48,5 +50,44 @@ inputs.forEach((input, index1) => {
       return;
     }
     verifyBtn.setAttribute('disabled', '');
+  });
+});
+
+validateOTPForm.addEventListener('submit', function (e) {
+  e.preventDefault();
+  otpInput.value = '';
+  inputs.forEach(input => {
+    otpInput.value += input.value;
+  });
+
+  $.ajax({
+    type: 'POST',
+    url: 'process_email_verification.php',
+    data: {
+      otp_input: otpInput.value,
+    },
+    success: function (response) {
+      console.log(response);
+      if (response.status === 'success') {
+        Swal.fire({
+          title: 'Success...!',
+          text: 'Email verifies successfully',
+          icon: 'success',
+          confirmButtonText: 'OK',
+        }).then(result => {
+          window.location.href = 'signup.php';
+        });
+      } else {
+        Swal.fire({
+          title: 'Something Went Wrong...!',
+          text: response.message,
+          icon: 'error',
+          confirmButtonText: 'OK',
+        });
+      }
+    },
+    error: function () {
+      console.log('Error');
+    },
   });
 });
