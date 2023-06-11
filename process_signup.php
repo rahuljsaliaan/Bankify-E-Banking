@@ -48,6 +48,8 @@ try {
         throw new Exception("There was some problem creating your account");
     }
 
+    unset($_SESSION['verified_email']);
+
     // Commit transaction
     $conn->commit();
 
