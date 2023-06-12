@@ -232,7 +232,7 @@ $(document).ready(function () {
           console.log('redirecting');
         } else {
           // Display error message
-          $('#errorMessage').text(response.slice(1, -1));
+          $('#errorMessage').text(response.slice(0, -1));
         }
       },
       error: function () {

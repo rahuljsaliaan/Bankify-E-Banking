@@ -14,7 +14,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `movements` (
-  `user_id` int(11) PRIMARY KEY NOT NULL,
+  `user_id` int(11) NOT NULL,
   `amount` decimal(11,2) NOT NULL,
   `date_time` datetime NOT NULL DEFAULT current_timestamp(),
    FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
