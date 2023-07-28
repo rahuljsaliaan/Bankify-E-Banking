@@ -51,9 +51,9 @@ git clone https://github.com/rahuljsaliaan/Bankify-E-Banking
 
 ## How to Use
 
-1. **Open the application in your web browser.
-2. **Register for a new account or log in with existing credentials.
-3. **Explore the intuitive user interface to manage your accounts and perform transactions.
+1. **Open the application in your web browser**.
+2. **Register for a new account or log in with existing credentials**.
+3. **Explore the intuitive user interface to manage your accounts and perform transactions**.
 
 # Thank you for using Bankify-E-Banking!
 
