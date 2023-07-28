@@ -55,8 +55,8 @@ git clone https://github.com/rahuljsaliaan/Bankify-E-Banking
 2. **Register for a new account or log in with existing credentials**.
 3. **Explore the intuitive user interface to manage your accounts and perform transactions**.
 
-# Thank you for using Bankify-E-Banking!
+---
 
-We hope you enjoy the amazing user interface and have a pleasant banking experience. If you encounter any issues or have suggestions for improvement, feel free to reach out to us. Happy banking!
+We hope you enjoy the amazing user interface and have a pleasant banking experience. If you encounter any issues or have suggestions for improvement, feel free to reach out to us. Happy banking! 🏦.
 
 
