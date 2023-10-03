@@ -2,7 +2,7 @@
 
 <div style="width:150px">
 
-![Bankify-E-Banking](img/logo.png)
+![Bankify-E-Banking](https://i.ibb.co/f1HVVt6/logo.png)
 
 </div>
 
@@ -32,9 +32,9 @@ Bankify-E-Banking is a modern and secure web-based banking application that prov
 
 <div align="center">
 
-![Screenshot 1](screenshots/homepage.png)
+![Screenshot 1](https://i.ibb.co/BnMLQ6B/homepage.png)
 
-![Screenshot 2](screenshots/dashboard.png)
+![Screenshot 2](https://i.ibb.co/ngVWzv7/dashboard.png)
 
 </div>
 
