@@ -1,11 +1,5 @@
 # Bankify-E-Banking Application
 
-<div style="width:150px">
-
-![Bankify-E-Banking](https://i.ibb.co/f1HVVt6/logo.png)
-
-</div>
-
 Bankify-E-Banking is a modern and secure web-based banking application that provides users with a seamless online banking experience. With a user-friendly interface and robust features, Bankify-E-Banking allows users to manage their accounts, perform transactions, and access various banking services with ease.
 
 ## Features
