@@ -1,6 +1,10 @@
 # Bankify-E-Banking Application
 
-![Bankify-E-Banking](link_to_screenshot_or_image)
+<div style="width:150px">
+
+![Bankify-E-Banking](img/logo.png)
+
+</div>
 
 Bankify-E-Banking is a modern and secure web-based banking application that provides users with a seamless online banking experience. With a user-friendly interface and robust features, Bankify-E-Banking allows users to manage their accounts, perform transactions, and access various banking services with ease.
 
@@ -26,8 +30,13 @@ Bankify-E-Banking is a modern and secure web-based banking application that prov
 
 ## Screenshots
 
-![Screenshot 1](screenshots/screenshot1.png)
-![Screenshot 2](screenshots/screenshot2.png)
+<div align="center">
+
+![Screenshot 1](screenshots/homepage.png)
+
+![Screenshot 2](screenshots/dashboard.png)
+
+</div>
 
 ## Getting Started
 
@@ -36,10 +45,10 @@ To run Bankify-E-Banking locally using XAMPP, follow these steps:
 1. **Install XAMPP**: Download and install XAMPP, which includes Apache, PHP, and MySQL, from the official website: [https://www.apachefriends.org](https://www.apachefriends.org)
 
 2. **Clone the repository**: Open a terminal and clone the Bankify-E-Banking repository to your local machine:
-git clone https://github.com/rahuljsaliaan/Bankify-E-Banking
-
+   git clone https://github.com/rahuljsaliaan/Bankify-E-Banking
 
 3. **Set up the Database**: Import the provided SQL schema into your MySQL database. You can do this by following these steps:
+
 - Launch XAMPP and start the Apache and MySQL services from the control panel.
 - Open your web browser and go to [http://localhost/phpmyadmin](http://localhost/phpmyadmin).
 - Log in to phpMyAdmin using your XAMPP credentials.
@@ -58,5 +67,3 @@ git clone https://github.com/rahuljsaliaan/Bankify-E-Banking
 ---
 
 We hope you enjoy the amazing user interface and have a pleasant banking experience. If you encounter any issues or have suggestions for improvement, feel free to reach out to us. Happy banking! 🏦.
-
-
